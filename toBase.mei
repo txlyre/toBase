@@ -1,0 +1,22 @@
+toBase :: int -> int -> [int]
+toBase b v = toBase' [] v 
+where
+  toBase' a 0 = a
+  toBase' a v = toBase' ((v % b):a) (v // b)
+
+toAlphaDigits :: [int] -> string
+toAlphaDigits = map toAlphaDigits'
+where
+  toAlphaDigits' n = fromCharCode (n + charCode? '0'), n < 10
+                   = fromCharCode (n + charCode? 'a' - 10)
+
+fromBase :: int -> [int] -> int
+fromBase b ds = foldl (n -> k -> n * b + k) 0 ds
+
+fromAlphaDigits :: string -> [int]
+fromAlphaDigits = map fromAlphaDigits'
+where
+  fromAlphaDigits' c = charCode? c - charCode? '0', isDigit? c
+                     = charCode? c - charCode? 'A' + 10, c >= 'A' && c <= 'Z'
+                     = charCode? c - charCode? 'a' + 10, c >= 'a' && c <= 'z'
+                     = error "bad input"
