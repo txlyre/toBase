@@ -1,0 +1,7 @@
+{
+  "name": "toBase",
+  "author": "txlyre",
+  "description": "Implements toBase and fromBase functions.",
+  "version": "0.1",
+  "dependencies": []
+}
