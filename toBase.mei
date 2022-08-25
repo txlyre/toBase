@@ -5,7 +5,8 @@ where
   toBase' a v = toBase' ((v % b):a) (v // b)
 
 toAlphaDigits :: [int] -> string
-toAlphaDigits = map toAlphaDigits'
+toAlphaDigits [] = "0"
+toAlphaDigits xs = map toAlphaDigits' xs
 where
   toAlphaDigits' n = fromCharCode (n + charCode? '0'), n < 10
                    = fromCharCode (n + charCode? 'a' - 10)
@@ -14,7 +15,8 @@ fromBase :: int -> [int] -> int
 fromBase b ds = foldl (n -> k -> n * b + k) 0 ds
 
 fromAlphaDigits :: string -> [int]
-fromAlphaDigits = map fromAlphaDigits'
+fromAlphaDigits "0" = []
+fromAlphaDigits xs = map fromAlphaDigits' xs
 where
   fromAlphaDigits' c = charCode? c - charCode? '0', isDigit? c
                      = charCode? c - charCode? 'A' + 10, c >= 'A' && c <= 'Z'
